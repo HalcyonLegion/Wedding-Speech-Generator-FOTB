@@ -15,16 +15,16 @@ export default async function (req, res) {
     return;
   }
 
-  const { tone, name, groom, bride, event1, event2, childhood, qualities, habits, tip, story, feeling123 } = req.body;
+   const { tone, name, groom, bride, event1, event2, childhood, qualities, habits, tip, story, feeling123 } = req.body;
 
-  // if (!tone || !name || !groom || !bride|| !event1 || !event2 || !childhood|| !qualities || !habits || !tip || !story || !feeling123) {
-  //   res.status(400).json({
-  //     error: {
-  //       message: "Please enter all required inputs",
-  //     }
-  //   });
-  //   return;
-  // }
+  //  if (!tone || !name || !groom || !bride || !event1 || !event2 || !childhood || !qualities || !habits || !tip || !story || !feeling123) {
+  //    res.status(400).json({
+  //      error: {
+  //        message: "Please enter all required inputs",
+  //      }
+  //    });
+  //    return;
+  //  }
 
   try {
     const completion = await openai.createCompletion({
@@ -65,7 +65,7 @@ function generatePrompt(tone, name, groom, bride, event1, event2, childhood, qua
   story: ${story}
   feeling123: ${feeling123}
 
-  Using British English, write out a complete and detailed, <<TONE>> Wedding Speech to be given by the Father of the Bride, whose name is <<NAME>>. The Bride's name is <<BRIDE>> and the Groom's name is <<GROOM>>. <<NAME>> will talk about <<EVENT>> and on a much more personal note about <<EVENT2>>. The Speech must go into great detail about her childhood: <<CHILDHOOD>>. <<NAME>> will talk about <<BRIDE>>'s qualities: <<QUALITIES>>, as well as her worst habits: <<HABITS>>. <<NAME>> will talk about how he feels about <<GROOM>> and offer him this tip when it comes to looking after his Daughter: <<TIP>>. <<NAME>> will share this story about when he first met <<GROOM>>: <<STORY>> which includes these Three feelings about his appearance "I thought he was <<FEELING123>>". <<NAME>> will end the speech with a heartfelt thanks to all who could attend, and a toast to the newly married couple ending with "Cheers!". Write out the entire Speech in great detail and be as <<TONE>> throughout:
+  Using British English, write out a complete and detailed, ${tone} Wedding Speech to be given by the Father of the Bride, whose name is ${name}. The Bride's name is ${bride} and the Groom's name is ${groom}. ${name} will talk about ${event1} and on a much more personal note about ${event2}. The Speech must go into great detail about her childhood: ${childhood}. ${name} will talk about ${bride}'s qualities: ${qualities}, as well as her worst habits: ${habits}. ${name} will talk about how he feels about ${groom} and offer him this tip when it comes to looking after his Daughter: ${tip}. ${name} will share this story about when he first met ${groom}: ${story} which includes these Three feelings about his appearance "I thought he was ${feeling123}". ${name} will end the speech with a heartfelt thanks to all who could attend, and a toast to the newly married couple ending with "Cheers!". Write out the entire Speech in great detail and be as ${tone} throughout:
 
   `;
 }
